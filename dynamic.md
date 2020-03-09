@@ -1,10 +1,15 @@
-# 动态规划
+<p> 
+<a href="http://coco66.info:88">
+<img src="http://coco66.info:88/leetcode/picture/home.png" alt="小土豆" style="zoom:50%;" /></a>
+</p>
 
-## 简介
+## 动态规划
+
+### 简介
 
 待整理...
 
-## 思考模板
+### 思考模板
 
 待整理...
 
