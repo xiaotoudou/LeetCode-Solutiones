@@ -2,7 +2,7 @@
 
 > 题目：给定一个仅包含数字 `2-9` 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。
 >
-> <img src="https://assets.leetcode-cn.com/aliyun-lc-upload/original_images/17_telephone_keypad.png" alt="img" style="zoom:40%;" />
+> <img src="http://coco66.info:88/leetcode/picture/17_telephone_keypad.png" alt="img" style="zoom:50%;" />
 >
 > 示例 :
 >
@@ -77,7 +77,7 @@ DFS问题模板解法三板斧：
 3. 回溯，当前可能出栈
 4. 终止条件就是到达叶子节点
 
-![算法过程.png](https://pic.leetcode-cn.com/38567dcbb6401d88946ca974aacffb5ab27cb1ad54056f02b59016c0cc68b40f-file_1562774451350)
+![算法过程.png](http://coco66.info:88/leetcode/picture/17_tree.png)
 
 Java实现，复杂度同动态规划解法。
 
