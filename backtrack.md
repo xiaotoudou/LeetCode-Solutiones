@@ -17,8 +17,8 @@
 
 ### 题目列表 
 
-1. [LeetCode 17](http://coco66.info:88/leetcode/backtrack/LeetCode17.html)
-2. [LeetCode 39](http://coco66.info:88/leetcode/backtrack/LeetCode39.html)
+1. [电话号码的字母组合 17](http://coco66.info:88/leetcode/backtrack/LeetCode17.html)
+2. [组合总和 39](http://coco66.info:88/leetcode/backtrack/LeetCode39.html)
 
 未完成
 

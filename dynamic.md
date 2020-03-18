@@ -17,6 +17,6 @@
 
 ### 题目列表 
 
-1. [LeetCode 32](http://coco66.info:88/leetcode/dynamic/LeetCode32.html)
-2. [LeetCode 95_96](http://coco66.info:88/leetcode/dynamic/LeetCode95_96.html)
+1. [最长有效括号 32](http://coco66.info:88/leetcode/dynamic/LeetCode32.html)
+2. [不同的二叉搜索树 95_96](http://coco66.info:88/leetcode/dynamic/LeetCode95_96.html)
 

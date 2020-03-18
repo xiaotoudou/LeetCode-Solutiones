@@ -3,7 +3,7 @@
 <img src="http://coco66.info:88/leetcode/picture/home.png" alt="小土豆" style="zoom:50%;" /></a>
 </p>
 
-## 数组
+## 数组、字符串
 
 ### 简介
 
@@ -12,15 +12,15 @@
 ### 思考模板
 
 1. 二分法
-2. 双指针发
+2. 双指针法
 
 ----
 
 ### 题目列表 
 
-1. [LeetCode 1](http://coco66.info:88/leetcode/array/LeetCode1.html)
+1. [两数之和 1](http://coco66.info:88/leetcode/array/LeetCode1.html)
 
-2. [LeetCode10](http://coco66.info:88/leetcode/array/LeetCode10.html)
+2. [正则表达式匹配10](http://coco66.info:88/leetcode/array/LeetCode10.html)
 
    
 
