@@ -36,12 +36,12 @@ public ListNode reverseKGroup(ListNode head, int k) {
         ListNode tail = res;
         ListNode p = head;
         Deque<ListNode> stock = new ArrayDeque<ListNode>(k);
-        while(p!=null || stock.size() == k){
-            if(stock.size()<k){
+        while(p!=null || stock.size() == k){  // 注意k恰好等于链表长度的情况，需要再进一次循环倒序
+            if(stock.size()<k){  // 栈小于k就进栈
                 stock.addLast(p);
                 p = p.next;
-            }else{
-                while(!stock.isEmpty()){
+            }else{  
+                while(!stock.isEmpty()){   //从栈里面逐个倒出
                     ListNode node = stock.removeLast();
                     tail.next = node;
                     tail = tail.next;
@@ -49,7 +49,7 @@ public ListNode reverseKGroup(ListNode head, int k) {
                 }
             }
         }
-        if(!stock.isEmpty()){
+        if(!stock.isEmpty()){  // 剩余节点不用倒序，从栈底取出节点
             tail.next = stock.removeFirst();
         } 
         return res.next;
@@ -58,10 +58,12 @@ public ListNode reverseKGroup(ListNode head, int k) {
 
 ### 尾插法
 
+先思考简单的子问题，[翻转链表](http://coco66.info:88/leetcode/linkedlist/LeetCode206.html)，实现了原地反转链表，并返回头结点。k个节点的原地反转就是每次计数k个节点，截出子链表，反转之后接回之前的链表。这里也可以写成递归的形式。
 
+java实现，时间复杂度O(n)，空间复杂度 O(1)
 
 ```java
-private ListNode reverse(ListNode head){
+private ListNode reverseList(ListNode head){ // 反转链表
         ListNode pre=null;
         ListNode cur=head;
         while(cur!=null){
@@ -74,24 +76,27 @@ private ListNode reverse(ListNode head){
     }
 
     public ListNode reverseKGroup(ListNode head, int k) {
-       ListNode dummy = new ListNode(0);
+       ListNode dummy = new ListNode(0);  // 虚头结点
        dummy.next=head;
-       ListNode pre = dummy;
-       ListNode tail=pre;
+       ListNode pre = dummy; // pre指向已完成反转部分的尾节点
+       ListNode tail=pre; // tail 用来计数
        while(tail.next!=null){
-           for(int i=0;i<k && tail!=null;++i){
+           for(int i=0;i<k && tail!=null;++i){  // tail移动到第k个节点
                tail=tail.next;
            }
-           if(tail == null){
+           if(tail == null){ //tail为null， 说明剩余节点少于k个
                break;
            }
-           ListNode start=pre.next;
-           ListNode next=tail.next;
-           tail.next=null;
-           pre.next=reverse(start);
-           start.next=next;
-           pre=start;
-           tail=pre;
+         // 截出子链表
+           ListNode subHead=pre.next; // 子链表头结点
+           ListNode next=tail.next; // 记录未处理链表的头结点
+           tail.next=null; // 子链表尾节点悬空
+         
+           pre.next=reverseList(subHead); // 反转之后的头结点接回已经处理部分的尾部
+        
+           start.next=next;   //翻转之后，start成为尾节点，接上未处理的部分
+           pre=start;  // pre 和 tail 归位到尾节点，准备下一次循环
+           tail=start;
        }
        return dummy.next;
     }
