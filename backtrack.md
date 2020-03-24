@@ -18,7 +18,8 @@
 ### 题目列表 
 
 1. [电话号码的字母组合 17](http://coco66.info:88/leetcode/backtrack/LeetCode17.html)
-2. [组合总和 39](http://coco66.info:88/leetcode/backtrack/LeetCode39.html)
+2. [解数独_37](http://coco66.info:88/leetcode/backtrack/LeetCode37.html)
+3. [组合总和 39](http://coco66.info:88/leetcode/backtrack/LeetCode39.html)
 
 未完成
 

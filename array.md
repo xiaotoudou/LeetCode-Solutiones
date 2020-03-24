@@ -26,4 +26,5 @@
 1. [两数之和 1](http://coco66.info:88/leetcode/array/LeetCode1.html)
 2. [正则表达式匹配10](http://coco66.info:88/leetcode/array/LeetCode10.html)
 3. [串联所有单词的子串30](http://coco66.info:88/leetcode/array/LeetCode30.html)
+4. [缺失的第一个正数41](http://coco66.info:88/leetcode/array/LeetCode41.html)
 
