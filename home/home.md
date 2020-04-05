@@ -1,8 +1,6 @@
-##### The journey is the reward.
+#### The journey is the reward.
 
 ----
-
-## LeetCode Solutiones
 
 ## 数据结构
 
