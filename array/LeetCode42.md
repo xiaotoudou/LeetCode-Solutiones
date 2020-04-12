@@ -59,13 +59,13 @@ public int trap(int[] height) {
     }
 ```
 
-### 暴力2
+### 中心扩展法
 
 遍历柱子，柱子 i 的可能蓄水量, 每一个柱子都需要分别向左和向右遍历，找到两侧的最高柱子。需水量为 min( height[left_max], height[right_max] ) - height[i]。时间复杂度 $O(n^2)$ , 空间复杂度为 O(n)。
 
 ### 动态规划
 
-暴力2中每个柱子都要向两侧遍历。可以先从两侧遍历所有柱子，记录下截止到柱子 i ，最高的柱子高度。第三次遍历柱子时，可直接得到当前柱子的需水量 min(left_max[i], right_min[i]) - height[i]。
+中心扩展法中每个柱子都要向两侧遍历。可以先从两侧遍历所有柱子，记录下截止到柱子 i ，最高的柱子高度。第三次遍历柱子时，可直接得到当前柱子的需水量 min(left_max[i], right_min[i]) - height[i]。
 
 Java实现，时间复杂度 O(n), 空间复杂度 O(n)
 
@@ -100,6 +100,33 @@ public int trap(int[] height) {
             if(w>0) count+=w;
         }
         return count;
+    }
+```
+
+### 单调栈
+
+维护一个单调递减栈，后进栈矩形如果比栈顶的矩形高，那么这个矩形的积水面积被当前矩形和栈顶第二个矩形限定，可以将它出栈，并累积积水量。注意，此时这个矩形上方的积水量并没有累积完，当左侧矩形仍然小于当前矩形时，可以继续出栈，直到栈空。
+
+左侧是一个单调递减栈，当右侧出现较高的矩形时，可以逐层计算积水量，直到达到新访问的矩形，或是当前矩形成为左侧最高矩形（到达栈底）。
+
+每个矩形会访问两次，时间复杂度 O(n), 空间复杂度 O(n)
+
+```java
+public int trap(int[] height) {
+        if(height == null) return 0;
+        int res =0;
+        Deque<Integer> stack = new ArrayDeque();
+        for(int i=0;i<height.length;++i){
+           while(!stack.isEmpty() && height[i]>height[stack.peek()]){
+               int cur = stack.pop();
+               if(stack.isEmpty()) break;
+             // 积水量由两块矩形之间距离与较矮"限定矩形"的高度决定
+               int h = Math.min(height[i], height[stack.peek()]);
+               res+=(i-stack.peek()-1)*(h-height[cur]); 
+           }
+           stack.push(i);
+        }
+        return res;
     }
 ```
 
