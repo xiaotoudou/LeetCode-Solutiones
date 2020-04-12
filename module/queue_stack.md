@@ -21,5 +21,7 @@
 
 1. [最长有效括号 32](http://coco66.info:88/leetcode/dynamic/LeetCode32.html)
 
+2. [柱状图中最大矩形面积_84](http://coco66.info:88/leetcode/queue_stack/LeetCode84.html)
+
    
 
