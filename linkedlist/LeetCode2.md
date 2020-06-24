@@ -19,46 +19,7 @@
 >
 > Edited by xiaotudou on 2020/3/15
 
-----
-
-### 栈
-
-从低位开始加两个链表，求和后低位放到栈里面保存，进位缓存；同样的逻辑一直遍历完两个链表。然后将栈中的数导出来即可。
-
-链表遍历技巧：长短不同的链表遍历时。会出现两种情况，1. 两个都存在 2.  其中一个遍历完。分类判断实现很麻烦，以下方法可以将两种情况统一到一个表达式处理。
-
-```java
-public ListNode addTwoNumbers(ListNode l1, ListNode l2){
-        Deque<Integer> stock = new ArrayDeque();
-        int carry=0;
-        int n1=0;
-        int n2=0;
-        while(l1 != null || l2 != null){
-            n1 = l1 == null?0:l1.val;  // 为空，置为0即可
-            n2 = l2 == null?0:l2.val;
-            int sum = n1 + n2 + carry; 
-            carry = sum/10;  
-            stock.addLast(sum%10);  // 低位进栈
-            l1 = l1 == null?null:l1.next;
-            l2 = l2 == null?null:l2.next;
-        }
-        if(carry>0){   // 最后可能还有个进位。
-            stock.addLast(carry);
-        }
-        ListNode head = new ListNode(0);
-        while(!stock.isEmpty()){
-            int p = stock.pollLast();
-            ListNode node = new ListNode(p);
-            node.next = head.next; 
-            head.next = node;
-        }
-        return head.next;
-}
-```
-
-
-
-### 虚头结点
+### 虚头结点+分类判断技巧
 
 其实链表就相当于栈的一种实现，可以将求得的低位直接保存到链表中。使用虚头结点，避免了头结点的判断。用一个尾指针指向队尾，每次在最后追加新节点。
 

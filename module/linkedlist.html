@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>linkedlist</title><link href='file://night/mermaid.dark.css' rel='stylesheet' type='text/css' /><link href='file://night/codeblock.dark.css' rel='stylesheet' type='text/css' /><link href='file://night/sourcemode.dark.css' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
+<title>linkedlist</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit inherit; background-repeat: inherit inherit; }
 iframe { margin: auto; }
@@ -24,14 +24,14 @@ body.typora-export { padding-left: 30px; padding-right: 30px; }
 }
 #write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
-img { max-width: 100%; vertical-align: middle; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
 button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
 p { line-height: inherit; }
-h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
 p { orphans: 4; }
 h1 { font-size: 2rem; }
 h2 { font-size: 1.8rem; }
@@ -43,7 +43,7 @@ h6 { font-size: 1rem; }
 .hidden { display: none; }
 .md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
 a { cursor: pointer; }
-sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.701961); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-top-left-radius: 4px; border-top-right-radius: 4px; border-bottom-right-radius: 4px; border-bottom-left-radius: 4px; cursor: pointer; }
 sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
 #write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
 figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
@@ -82,17 +82,18 @@ blockquote > :first-child, li > :first-child { margin-top: 0px; }
 .footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
 #write .footnote-line { white-space: pre-wrap; }
 @media print { 
-  body, html { border: 1px solid transparent; height: 99%; break-after: avoid-page; break-before: avoid-page; }
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
   #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
   .typora-export * { -webkit-print-color-adjust: exact; }
   html.blink-to-pdf { font-size: 13px; }
-  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid-page; }
+  .typora-export #write { padding-left: 32px; padding-right: 32px; padding-bottom: 0px; break-after: avoid; }
   .typora-export #write::after { height: 0px; }
 }
 .footnote-line { margin-top: 0.714em; font-size: 0.7em; }
 a img, img a { cursor: pointer; }
 pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; background-position: initial initial; background-repeat: initial initial; }
 p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
 p > .md-image:only-child { display: inline-block; width: 100%; }
 #write .MathJax_Display { margin: 0.8em 0px 0px; }
 .md-math-block { width: 100%; }
@@ -617,9 +618,9 @@ g.stateGroup line {
   fill: black;
   font-size: 10px;
   font-weight: bold;
-   }
+}
 
-;
+
 /* CSS Document */
 
 /** code highlight */
@@ -732,7 +733,7 @@ g.stateGroup line {
 .CodeMirror-gutters {
     border-right: none;
 }
-;
+
 /* CSS Document */
 
 /** markdown source **/
@@ -816,6 +817,19 @@ body {
 
 #write {
     max-width: 914px;
+}
+
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
 }
 
 html,
@@ -1763,6 +1777,6 @@ footer.ty-footer {
 <div  id='write'  class = 'is-mac'><p> 
 <a href="http://coco66.info:88">
 <img src="http://coco66.info:88/leetcode/picture/home.png" alt="小土豆" style="zoom:50%;"></a>
-</p><h2><a name="链表" class="md-header-anchor"></a><span>链表</span></h2><h3><a name="简介" class="md-header-anchor"></a><span>简介</span></h3><p><span>链表是一种线性表，插入、删除操作O(1)时间复杂度，不支持随机访问。另外，链表可以无限追加（内存允许），但是节点的存储开销比数组大（多了一个指针域）。</span></p><h3><a name="经典问题" class="md-header-anchor"></a><span>经典问题</span></h3><ol><li><a href='http://coco66.info:88/leetcode/linkedlist/LeetCode206.html'><span>反转链表</span></a><span> - 尾插法</span></li><li><span>合并两个有序链表 - 双链表操作</span></li><li><span>链表交叉 - 栈</span></li><li><span>链表成环 - 快慢指针</span></li></ol><h3><a name="常用技巧" class="md-header-anchor"></a><span>常用技巧</span></h3><ol><li><span>虚头结点</span></li><li><span>双链表操作，解决链表长度不同的问题</span></li><li><span>栈，逆序访问链表</span></li></ol><hr /><h3><a name="题目列表" class="md-header-anchor"></a><span>题目列表 </span></h3><ol start='' ><li><p><a href='http://coco66.info:88/leetcode/linkedlist/LeetCode2.html'><span>两数相加_2</span></a><span>   </span></p></li><li><p><a href='http://coco66.info:88/leetcode/linkedlist/LeetCode23.html'><span>合并K个排序链表_23</span></a><span>  </span></p></li><li><p><a href='http://coco66.info:88/leetcode/linkedlist/LeetCode25.html'><span>K个一组翻转链表_25</span></a><span>  </span></p><p>&nbsp;</p></li></ol><p>&nbsp;</p></div>
+</p><h2><a name="链表" class="md-header-anchor"></a><span>链表</span></h2><h3><a name="简介" class="md-header-anchor"></a><span>简介</span></h3><p><span>链表的插入、删除操作O(1)时间复杂度。</span></p><h3><a name="经典问题" class="md-header-anchor"></a><span>经典问题</span></h3><ol><li><span>反转链表</span></li><li><span>链表交叉 </span></li><li><span>链表成环 </span></li><li><span>跳表</span></li></ol><h3><a name="常用技巧" class="md-header-anchor"></a><span>常用技巧</span></h3><ol start='' ><li><span>虚头结点</span></li><li><span>双链表操作</span></li><li><span>栈、反转链表，逆序访问链表</span></li><li><span>快慢指针</span></li></ol><hr /><h3><a name="题目列表" class="md-header-anchor"></a><span>题目列表 </span></h3><ol start='' ><li><p><a href='https://leetcode-cn.com/problems/reverse-linked-list'><span>反转链表</span></a><span> </span></p></li><li><p><a href='https://leetcode-cn.com/problems/intersection-of-two-linked-lists/'><span>相交链表</span></a></p></li><li><p><a href='https://leetcode-cn.com/problems/linked-list-cycle/'><span>环形链表</span></a></p></li><li><p><a href='http://coco66.info:88/leetcode/linkedlist/LeetCode2.html'><span>两数相加</span></a><span>   </span></p></li><li><p><a href='https://leetcode-cn.com/problems/partition-list/'><span>分隔链表</span></a></p></li><li><p><a href='https://leetcode-cn.com/problems/merge-two-sorted-lists/'><span>合并两个有序链表</span></a></p></li><li><p><a href='https://leetcode-cn.com/problems/sort-list/'><span>排序链表</span></a></p></li><li><p><a href='https://leetcode-cn.com/problems/reorder-list/'><span>重排链表</span></a></p></li><li><p><a href='https://leetcode-cn.com/problems/swap-nodes-in-pairs/'><span>两两交换链表中的节点</span></a></p></li><li><p><a href='https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/'><span>删除链表的倒数第N个节点</span></a></p></li><li><p><a href='http://coco66.info:88/leetcode/linkedlist/LeetCode23.html'><span>合并K个排序链表*</span></a><span>  </span></p></li><li><p><a href='http://coco66.info:88/leetcode/linkedlist/LeetCode25.html'><span>K个一组翻转链表*</span></a><span>  </span></p><p>&nbsp;</p></li></ol><p>&nbsp;</p></div>
 </body>
 </html>

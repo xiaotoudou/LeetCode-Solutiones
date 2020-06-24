@@ -94,9 +94,9 @@ private ListNode reverseList(ListNode head){ // 反转链表
          
            pre.next=reverseList(subHead); // 反转之后的头结点接回已经处理部分的尾部
         
-           start.next=next;   //翻转之后，start成为尾节点，接上未处理的部分
-           pre=start;  // pre 和 tail 归位到尾节点，准备下一次循环
-           tail=start;
+           subHead.next=next;   //翻转之后，subHead成为尾节点，接上未处理的部分
+           pre=subHead;  // pre 和 tail 归位到尾节点，准备下一次循环
+           tail=subHead;
        }
        return dummy.next;
     }
