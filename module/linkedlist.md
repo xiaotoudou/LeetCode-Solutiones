@@ -21,57 +21,101 @@
 
 1. #### 单链表
 
-   根据链表中节点的值是否有序，可以分为**无序链表**和**有序链表**。无序链表采用头插法或者尾插法插入，时间复杂度O(1)，查找可能需要遍历整个链表，平均时间复杂度 O(n)。链表的删除和修改都是基于查找操作，因此也是O(n)。有序链表为了维持节点值有序，插入前需要先找到待插入点，这一步查找操作消耗时间O(n)，因此有序链表的插入操作为O(n)，其他与无序链表一致。
+   根据链表中节点的值是否有序，可以分为**无序链表**和**有序链表**。无序链表采用**头插法或者尾插法**插入，时间复杂度O(1)，查找可能需要遍历整个链表，平均时间复杂度 O(n)。链表的删除和修改都是基于查找操作，因此也是O(n)。有序链表为了维持节点值有序，插入前需要先找到待插入点，这一步查找操作消耗时间O(n)，因此有序链表的插入操作为O(n)，其他与无序链表一致。
 
    有序链表维持节点有序，增加了额外的计算量，但是在有序链表的基础上可以实现**跳表**，可以将增删改查操作时间复杂度都降至O(logn)。
 
    **无序链表**
 
-   无序链表只需要将对象插入到
+   无序链表只需要将对象插入到链表即可，头插法和尾插法其实分别就是实现栈和队列的方法。这里用到了虚头结点的技巧，dumy解决了需要判断头结点的问题，简化编程实现。
 
    ```Java
-   class Listnode{  //  链表节点的定义，以下不在重复定义。
-     int val;
-     ListNode next;
-     ListNode(int v){val=v;}
-   }
-   class ListInfo{
-     ListNode dumy = new ListNode(0); // 虚拟头结点
-     ListNode tail = dumy;
-   }
+   // 虚拟头结点, 避免了头结点是否为空的判断
+     final Listnode dumy = new Listnode(0);
+     Listnode tail = dumy; // 指向最后尾节点
    
-   // 头插法
-   void insertHead(){
-     
-   }
+   // 链表节点的数据结构
+     class Listnode {
+       int val;
+       Listnode next;
+       Listnode(int val) {
+         this.val = val;
+       }
+     }
    
-   // 尾插法
-   void insertTail(){
-     
-   }
+     // 头插法, 每次插入到虚头结点的后面，尾节点只需要在
+     public void insertHead(int val) {
+       Listnode newNode = new Listnode(val);
+       newNode.next = dumy.next;
+       dumy.next = newNode;
+       if (tail == dumy) {
+         tail = newNode;
+       }
+     }
    
-   Integer get(int val){
-     
-   }
+     // 尾插法, 每次插入在尾节点之后
+     public void insertTail(int val) {
+       tail.next = new Listnode(val);
+       tail = tail.next;
+     }
    
-    // 删除找到的第一个符合条件的节点
-   void delete(int val){
-     
-   }
+     // 找到第一个和target相等的节点值，否则返回null
+     public Integer get(int target) {
+       Listnode head = dumy.next;
+       while (head != null) {
+         if (head.val == target) {
+           break;
+         }
+         head = head.next;
+       }
+       return head == null ? null : head.val;
+     }
    
+     // 删除得找到待删除节点的前一个节点
+     public void delete(int target) {
+       Listnode cur = dumy;
+       while (cur.next != null && cur.next.val != target) // 比较的是下一个节点是否满足要求
+         cur = cur.next; 
+       if (cur.next == null) return;  // 如果cur移动到最后一个节点，说明未找到target，直接返回
+       Listnode tmp = cur.next;  //  此时cur是指向待删除节点的前一个节点，tmp指向待删除节点
+       cur.next = tmp.next;
+       tmp.next = null;   //  需要悬空删除节点的next指针，避免内存泄漏
+     }
    ```
 
    **有序链表**
 
-   
+   有序链表需要保证插入节点的顺序，有序链表的插入方法有些区别
+
+   ```java
+   public void insert(int val) {
+       Listnode cur = dumy;
+       // 链表没法回退，所以需要找到待插入点的前一个节点
+       while (cur.next != null && cur.next.val < val) cur = cur.next;
+       // 跳出循环后，cur有三种可能
+       // 1. cur.val==val  重复值
+       // 2. cur.next == null 已经指向最后一个节点，说明此时val大于链表中的最大值
+       // 3. cur.next.val > val cur的下一个节点值是第一个大于val的节点
+       //    比如 1->2->4->5,  插入3, 此时cur指向 2 这个节点
+       if(cur.val==val){  // 重复值不插入，直接返回
+         return;
+       }
+       // 2 和 3 两种情况直接在 cur 节点之后
+       Listnode newNode = new Listnode(val);
+       newNode.next=cur.next;
+       cur.next=newNode;
+     }
+   ```
 
    > 实现了“增删改查”的方法后，要写样例来测试，比如插入1万次，修改1万次，删除5千次，最后检查链表是不是预期的状态。
+   >
+   > 总结：单链表的样式有两种，一种是无序链表，可以从头部插入或是尾部插入，时间复杂度 O(1)；另一种是有序链表，插入需要保证链表有序，时间复杂度 O(n)。查找和删除操作，两种链表的实现是一样的，时间复杂度都是O(n)。
 
    
 
-2. #### 双链表
+2. #### 双向链表
 
-   节点结构中增加了前向指针，方便逆序访问。双链表的增删改查也需要熟悉。
+   节点结构中增加了前向指针，方便逆序访问。基本操作的逻辑差不多
 
    
 
@@ -81,7 +125,7 @@
 
    
 
-4. #### 双环形链表
+4. #### 双向环形链表
 
    双链表的尾节点next指针指向头结点，头结点的前向指针prev指向尾节点
 
