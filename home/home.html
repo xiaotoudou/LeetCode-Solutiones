@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
-<title>home</title><link href='file://night/mermaid.dark.css' rel='stylesheet' type='text/css' /><link href='file://night/codeblock.dark.css' rel='stylesheet' type='text/css' /><link href='file://night/sourcemode.dark.css' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
+<title>home</title><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color: #ffffff; --text-color: #333333; --select-text-bg-color: #B5D6FC; --select-text-font-color: auto; --monospace: "Lucida Console",Consolas,"Courier",monospace; }
 html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
 body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857143; overflow-x: hidden; background-image: inherit; background-size: inherit; background-attachment: inherit; background-origin: inherit; background-clip: inherit; background-color: inherit; tab-size: 4; background-position: inherit inherit; background-repeat: inherit inherit; }
 iframe { margin: auto; }
@@ -24,14 +24,14 @@ body.typora-export { padding-left: 30px; padding-right: 30px; }
 }
 #write li > figure:last-child { margin-bottom: 0.5rem; }
 #write ol, #write ul { position: relative; }
-img { max-width: 100%; vertical-align: middle; }
+img { max-width: 100%; vertical-align: middle; image-orientation: from-image; }
 button, input, select, textarea { color: inherit; font-family: inherit; font-size: inherit; font-style: inherit; font-variant-caps: inherit; font-weight: inherit; font-stretch: inherit; line-height: inherit; }
 input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
 *, ::after, ::before { box-sizing: border-box; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
 #write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
 p { line-height: inherit; }
-h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 4; }
 p { orphans: 4; }
 h1 { font-size: 2rem; }
 h2 { font-size: 1.8rem; }
@@ -82,7 +82,7 @@ blockquote > :first-child, li > :first-child { margin-top: 0px; }
 .footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
 #write .footnote-line { white-space: pre-wrap; }
 @media print { 
-  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; font-variant-ligatures: no-common-ligatures; }
   #write { margin-top: 0px; padding-top: 0px; border-color: transparent !important; }
   .typora-export * { -webkit-print-color-adjust: exact; }
   html.blink-to-pdf { font-size: 13px; }
@@ -93,6 +93,7 @@ blockquote > :first-child, li > :first-child { margin-top: 0px; }
 a img, img a { cursor: pointer; }
 pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background-color: rgb(204, 204, 204); display: block; overflow-x: hidden; background-position: initial initial; background-repeat: initial initial; }
 p > .md-image:only-child:not(.md-img-error) img, p > img:only-child { display: block; margin: auto; }
+#write.first-line-indent p > .md-image:only-child:not(.md-img-error) img { left: -2em; position: relative; }
 p > .md-image:only-child { display: inline-block; width: 100%; }
 #write .MathJax_Display { margin: 0.8em 0px 0px; }
 .md-math-block { width: 100%; }
@@ -617,9 +618,9 @@ g.stateGroup line {
   fill: black;
   font-size: 10px;
   font-weight: bold;
-   }
+}
 
-;
+
 /* CSS Document */
 
 /** code highlight */
@@ -732,7 +733,7 @@ g.stateGroup line {
 .CodeMirror-gutters {
     border-right: none;
 }
-;
+
 /* CSS Document */
 
 /** markdown source **/
@@ -816,6 +817,19 @@ body {
 
 #write {
     max-width: 914px;
+}
+
+
+@media only screen and (min-width: 1400px) {
+	#write {
+		max-width: 1024px;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	#write {
+		max-width: 1200px;
+	}
 }
 
 html,
@@ -1760,7 +1774,7 @@ footer.ty-footer {
 </style>
 </head>
 <body class='typora-export' >
-<div  id='write'  class = 'is-mac'><h4><a name="the-journey-is-the-reward" class="md-header-anchor"></a><span>The journey is the reward.</span></h4><hr /><h2><a name="数据结构" class="md-header-anchor"></a><span>数据结构</span></h2><ol start='' ><li><h3><a name="数组httpcoco66info88leetcodemodulearrayhtml" class="md-header-anchor"></a><a href='http://coco66.info:88/leetcode/module/array.html'><span>数组</span></a></h3></li><li><h3><a name="链表httpcoco66info88leetcodemodulelinkedlisthtml" class="md-header-anchor"></a><a href='http://coco66.info:88/leetcode/module/linkedlist.html'><span>链表</span></a></h3></li><li><h3><a name="字符串httpcoco66info88leetcodemodulestringhtml" class="md-header-anchor"></a><a href='http://coco66.info:88/leetcode/module/string.html'><span>字符串</span></a></h3></li><li><h3><a name="队列栈httpcoco66info88leetcodemodulequeuestackhtml" class="md-header-anchor"></a><a href='http://coco66.info:88/leetcode/module/queue_stack.html'><span>队列、栈</span></a></h3></li><li><h3><a name="二叉树httpcoco66info88leetcodemodulebinarytreehtml" class="md-header-anchor"></a><a href='http://coco66.info:88/leetcode/module/binarytree.html'><span>二叉树</span></a></h3></li><li><h3><a name="图httpcoco66info88leetcodemodulegraphhtml" class="md-header-anchor"></a><a href='http://coco66.info:88/leetcode/module/graph.html'><span>图</span></a></h3></li></ol><hr /><h2><a name="算法" class="md-header-anchor"></a><span>算法</span></h2><ol start='' ><li><h3><a name="查找httpcoco66info88leetcodemodulesearchhtml" class="md-header-anchor"></a><a href='http://coco66.info:88/leetcode/module/search.html'><span>查找</span></a></h3></li><li><h3><a name="分治httpcoco66info88leetcodemoduledividemergehtml" class="md-header-anchor"></a><a href='http://coco66.info:88/leetcode/module/divide_merge.html'><span>分治</span></a></h3></li><li><h3><a name="排序httpcoco66info88leetcodemodulesortinghtml" class="md-header-anchor"></a><a href='http://coco66.info:88/leetcode/module/sorting.html'><span>排序</span></a></h3></li><li><h3><a name="回溯httpcoco66info88leetcodemodulebacktrackhtml" class="md-header-anchor"></a><a href='http://coco66.info:88/leetcode/module/backtrack.html'><span>回溯</span></a></h3></li><li><h3><a name="动态规划httpcoco66info88leetcodemoduledynamichtml" class="md-header-anchor"></a><a href='http://coco66.info:88/leetcode/module/dynamic.html'><span>动态规划</span></a></h3></li></ol><p> 
+<div  id='write'  class = 'is-mac'><h4><a name="the-journey-is-the-reward" class="md-header-anchor"></a><span>The journey is the reward.</span></h4><hr /><p><span>数据结构与算法</span></p><figure><table><thead><tr><th style='text-align:left;' ><span>数据结构</span></th><th style='text-align:right;' ><span>算法</span></th></tr></thead><tbody><tr><td style='text-align:left;' ><a href='http://coco66.info:88/leetcode/module/array.html'><span>数组</span></a></td><td style='text-align:right;' ><a href='http://coco66.info:88/leetcode/module/search.html'><span>查找</span></a></td></tr><tr><td style='text-align:left;' ><a href='http://coco66.info:88/leetcode/module/string.html'><span>字符串</span></a></td><td style='text-align:right;' ><a href='http://coco66.info:88/leetcode/module/sorting.html'><span>排序</span></a></td></tr><tr><td style='text-align:left;' ><a href='http://coco66.info:88/leetcode/module/linkedlist.html'><span>链表</span></a></td><td style='text-align:right;' ><a href='http://coco66.info:88/leetcode/module/divide_merge.html'><span>分治</span></a></td></tr><tr><td style='text-align:left;' ><a href='http://coco66.info:88/leetcode/module/queue_stack.html'><span>栈&amp;队列</span></a></td><td style='text-align:right;' ><a href='http://coco66.info:88/leetcode/module/backtrack.html'><span>回溯</span></a></td></tr><tr><td style='text-align:left;' ><a href='http://coco66.info:88/leetcode/module/binarytree.html'><span>树</span></a></td><td style='text-align:right;' ><span>贪心</span></td></tr><tr><td style='text-align:left;' ><span>优先队列(堆)</span></td><td style='text-align:right;' ><a href='http://coco66.info:88/leetcode/module/dynamic.html'><span>动态规划</span></a></td></tr><tr><td style='text-align:left;' ><a href='http://coco66.info:88/leetcode/module/graph.html'><span>图</span></a></td><td style='text-align:right;' >&nbsp;</td></tr></tbody></table></figure><p> 
 <a href="https://github.com/xiaotoudou/LeetCode-Solutiones">
 <img src="http://coco66.info:88/leetcode/picture/github.png" alt="github地址" style="zoom:50%;"></a>
 </p><hr /><p>&nbsp;</p></div>
