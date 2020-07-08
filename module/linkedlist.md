@@ -29,57 +29,65 @@
 
    无序链表只需要将对象插入到链表即可，头插法和尾插法其实分别就是实现栈和队列的方法。这里用到了虚头结点的技巧，dumy解决了需要判断头结点的问题，简化编程实现。
 
-   ```Java
-   // 虚拟头结点, 避免了头结点是否为空的判断
-     final Listnode dumy = new Listnode(0);
-     Listnode tail = dumy; // 指向最后尾节点
-   
+   ```c
    // 链表节点的数据结构
-     class Listnode {
+     struct Listnode {
        int val;
-       Listnode next;
-       Listnode(int val) {
-         this.val = val;
-       }
+       Listnode* next;
      }
    
-     // 头插法, 每次插入到虚头结点的后面，尾节点只需要在
-     public void insertHead(int val) {
-       Listnode newNode = new Listnode(val);
-       newNode.next = dumy.next;
-       dumy.next = newNode;
-       if (tail == dumy) {
+   // 虚拟头结点, 避免了头结点是否为空的判断( 这里不理解可以语音说)
+     Listnode dumy = malloc(sizeof(struct Listnode));  //生成一个新的哑节点，不保存数据
+     Listnode* tail = dumy; // 指向最后尾节点
+   
+     // 头插法规定每次插入到虚头结点的后面。
+     // 虚头结点相当于自行车队的 “前骑”，新的伙伴就跟在前骑后面
+   
+     // 比如插入 1，链表变成 dumy->1, 此时tail 指针指向“1”这个节点
+   	// 再插入2，dumy->2->1, tail仍然指向 “1”，tail 永远指向自行车队的最后一个
+     void insertHead(int val) {
+       Listnode newNode = malloc(sizeof(struct Listnode));
+       newNode->next = dumy->next;  // 新来的节点先指向此时虚节点后面的节点
+       dumy->next = newNode; //  再将虚头结点指向自己
+       if (tail == dumy) { // 只有在链表为空时需要移动一次
          tail = newNode;
        }
      }
    
-     // 尾插法, 每次插入在尾节点之后
-     public void insertTail(int val) {
-       tail.next = new Listnode(val);
-       tail = tail.next;
+     // 尾插法, 每次插入在尾节点之后。也就是新来的伙伴直接跟在车队最后
+   	// 插入 1，链表变成 dumy->1, 此时tail 指针指向“1”这个节点
+   	// 再插入2，dumy->1->2, tail指向 “2”，tail指向“2”
+     void insertTail(int val) {
+       tail->next = malloc(sizeof(struct Listnode));  // 插入 2 时，tail 指向1，将1的next 指向2
+       tail = tail->next; // tail 移动到最后
      }
    
      // 找到第一个和target相等的节点值，否则返回null
-     public Integer get(int target) {
-       Listnode head = dumy.next;
-       while (head != null) {
-         if (head.val == target) {
+     int get(int target) {
+       Listnode* head = dumy->next;
+       while (head != null) {  // head 移动到null时，说明没找到
+         if (head->val == target) {  // 找到目标值就跳出循环
            break;
          }
-         head = head.next;
+         head = head->next; // 不是目标值就移动到下一个
        }
-       return head == null ? null : head.val;
+       
+      if(head != null){
+        return head->val
+      }else{
+        return null
+      }
      }
    
      // 删除得找到待删除节点的前一个节点
-     public void delete(int target) {
-       Listnode cur = dumy;
-       while (cur.next != null && cur.next.val != target) // 比较的是下一个节点是否满足要求
-         cur = cur.next; 
-       if (cur.next == null) return;  // 如果cur移动到最后一个节点，说明未找到target，直接返回
-       Listnode tmp = cur.next;  //  此时cur是指向待删除节点的前一个节点，tmp指向待删除节点
-       cur.next = tmp.next;
-       tmp.next = null;   //  需要悬空删除节点的next指针，避免内存泄漏
+     void delete(int target) {
+       Listnode* cur = dumy;
+       while (cur->next != null && cur->next->val != target) // 比较的是下一个节点是否满足要求
+         cur = cur->next; 
+       if (cur->next == null) return;  // 如果cur移动到最后一个节点，说明未找到target，直接返回
+       Listnode* tmp = cur->next;  //  此时cur是指向待删除节点的前一个节点，tmp指向待删除节点
+       cur->next = tmp->nexs
+       free(tmp);   //  需要释放节点的内存，避免内存泄漏
      }
    ```
 
@@ -87,23 +95,24 @@
 
    有序链表需要保证插入节点的顺序，有序链表的插入方法有些区别
 
-   ```java
-   public void insert(int val) {
-       Listnode cur = dumy;
+   ```c
+     void insert(int val) {
+       Listnode* cur = dumy;
        // 链表没法回退，所以需要找到待插入点的前一个节点
-       while (cur.next != null && cur.next.val < val) cur = cur.next;
+       while (cur->next != null && cur->next->val < val) cur = cur->next;
        // 跳出循环后，cur有三种可能
-       // 1. cur.val==val  重复值
-       // 2. cur.next == null 已经指向最后一个节点，说明此时val大于链表中的最大值
-       // 3. cur.next.val > val cur的下一个节点值是第一个大于val的节点
+       // 1. cur->val==val  重复值
+       // 2. cur->next == null 已经指向最后一个节点，说明此时val大于链表中的最大值
+       // 3. cur->next->val > val cur的下一个节点值是第一个大于val的节点
        //    比如 1->2->4->5,  插入3, 此时cur指向 2 这个节点
-       if(cur.val==val){  // 重复值不插入，直接返回
+       if(cur->val==val){  // 重复值不插入，直接返回
          return;
        }
        // 2 和 3 两种情况直接在 cur 节点之后
-       Listnode newNode = new Listnode(val);
-       newNode.next=cur.next;
-       cur.next=newNode;
+       Listnode* newNode = malloc(sizeof(struct Listnode));
+       newNode->val=val;
+       newNode->next=cur->next;
+       cur->next=newNode;
      }
    ```
 
@@ -142,11 +151,11 @@ LeetCode的链表题目变化不多，解题思路主要是基础方法的组合
    以下是反转链表的迭代写法，采用“头插法”，原地将链表逆序，时间复杂度 O(n)，空间复杂度 O(1)。第一次看就去LeetCode上看题解，有图示说明，见下面题目列表第一题。
 
    ```java
-   ListNode reverseLinkedlist(ListNode head){
-     ListNode pre = null; // pre 设为null
+   ListNode* reverseLinkedlist(ListNode* head){
+     ListNode* pre = null; // pre 设为null
      while(head!=null){
-       ListNode nx=head.next;
-       head.next=pre;
+       ListNode* nx=head->next;
+       head->next=pre;
        pre=head;
        head=nx;
      }
@@ -169,17 +178,17 @@ LeetCode的链表题目变化不多，解题思路主要是基础方法的组合
    > 1. 快慢指针  --- 中分链表、检测链表相交和成环
 
    ```java
-   ListNode divideLinklist(ListNode head){
-     if(head==null || head.next==null) return head;
+   ListNode* divideLinklist(ListNode* head){
+     if(head==null || head->next==null) return head;
      
-     ListNode slow = head;
-     ListNode fast = head;
-     while(fast.next!=null){
-       if(fast.next.next!=null){
-         fast=fast.next.next;
-         slow=slow.next;
+     ListNode* slow = head;
+     ListNode* fast = head;
+     while(fast->next!=null){
+       if(fast->next->next!=null){
+         fast=fast->next->next;
+         slow=slow->next;
        }else{
-         fast=fast.next;
+         fast=fast->next;
        }
      }
      return slow;
@@ -197,20 +206,20 @@ LeetCode的链表题目变化不多，解题思路主要是基础方法的组合
    > 1. 虚头结点 --- 生成新链表时避免了头结点的判断
 
    ```java
-   ListNode mergeLinkList(ListNode head1, ListNode head2){
+   ListNode* mergeLinkList(ListNode* head1, ListNode* head2){
      ListNode dm = new ListNode(0);  // 虚头结点
-     ListNode cur = dm;
+     ListNode* cur = dm;
      while(head1 != null && head2 != null){ 
-       cur.next=head1;
-       cur=cur.next;
-       head1=head1.next;
+       cur->next=head1;
+       cur=cur->next;
+       head1=head1->next;
        // 逻辑判断
-       cur.next=head2;
-       cur=cur.next;
-       head2=head2.next;
+       cur->next=head2;
+       cur=cur->next;
+       head2=head2->next;
      }
-     cur.next = head1!=null?head1:head2;
-     return dm.next;
+     cur->next = head1!=null?head1:head2;
+     return dm->next;
    }
    ```
 

@@ -7,9 +7,13 @@
 
 ### 简介
 
-> 栈，先进后出
+> 数组元素 arr [1, 2, 3, 4], 顺序访问数组压栈 和 进队，栈和队列中的状态
 >
-> 队列，先进先出
+> 栈：(栈顶) 4 -> 3 -> 2 -> 1 (栈底)
+>
+> 队列：(队头) 1 -> 2 -> 3 -> 4 (队尾)
+>
+> 栈是从栈顶压栈，也是从栈顶出栈；队列是从队尾入队，队头出队。
 
 ### 基本款式
 
@@ -37,23 +41,37 @@
 
 ### 算法题基础方法
 
-1. 单调栈
-2. 栈 --- 深度优先遍历二叉树、图
-3. 队列 --- 广度优先遍历二叉树、图
+1. 括号配对问题 --- 栈的典型应用
+
+   
+
+2. 单调栈 
+
+   数组中从左向右遍历，从一个元素右侧找到第一个大于当前元素的值。暴力解法就是遇到每一个元素后往后遍历，直到找到一个大于它的元素，或是到末尾。暴力法时间复杂度 O(n2)。单调栈的原理是维护一个单调递减的栈
+
+3. 栈 --- 深度优先遍历
+
+4. 队列 --- 广度优先遍历
 
 ----
 
 ### 题目列表 
 
-1. [每日温度](https://leetcode-cn.com/problems/daily-temperatures/)
+1. 栈实现队列  & 队列实现栈
 
-2. [最长有效括号 32*](http://coco66.info:88/leetcode/dynamic/LeetCode32.html)
+2. [有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)
 
-3. [接雨水42*](http://coco66.info:88/leetcode/array/LeetCode42.html)
+3. [下一个更大元素 I](https://leetcode-cn.com/problems/next-greater-element-i/)
 
-4. [柱状图中最大矩形面积_84*](http://coco66.info:88/leetcode/queue_stack/LeetCode84.html)
+4. [每日温度](https://leetcode-cn.com/problems/daily-temperatures/)
 
-5. [最大矩形_85*](http://coco66.info:88/leetcode/queue_stack/LeetCode85.html)
+5. [最长有效括号 32*](http://coco66.info:88/leetcode/dynamic/LeetCode32.html)
+
+6. [接雨水42*](http://coco66.info:88/leetcode/array/LeetCode42.html)
+
+7. [柱状图中最大矩形面积_84*](http://coco66.info:88/leetcode/queue_stack/LeetCode84.html)
+
+8. [最大矩形_85*](http://coco66.info:88/leetcode/queue_stack/LeetCode85.html)
 
    
 
